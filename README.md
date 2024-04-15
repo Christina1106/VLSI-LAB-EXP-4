@@ -93,6 +93,26 @@ endmodule
 
 ![Screenshot 2024-04-15 010129](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/23d7c687-e50d-43ed-a05d-d0fe4f5f7a8c)
 
+//MOD -10 COUNTER 
+module counter(
+input clk,rst, enable,
+output reg [3:0]counter_output 
+);
+always@ (posedge clk)
+begin
+if(rst | counter_output==4'b1001)
+counter_output <= 4'b0000;
+else if(enable)
+counter_output <= counter_output + 1;
+else
+counter_output <= 0;
+end
+endmodule
+
+![Uploading Screenshot 2024-04-15 011407.png…]()
+
+![Uploading Screenshot 2024-04-15 011454.png…]()
+
 
 
 OUTPUT WAVEFORM
