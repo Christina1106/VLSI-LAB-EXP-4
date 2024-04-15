@@ -51,7 +51,25 @@ STEP:11  On the board, by giving required input, the LEDs starts to glow light, 
 
 VERILOG CODE
 
-   <<< TYPE YOUR VERILOG CODE >>>
+   module DFlipFlop (D,clk, reset, Q);
+input D;
+input clk; 
+input reset;  
+output reg Q; 
+always @(posedge clk) 
+begin
+ if(reset==1'b1) 
+  Q <= 1'b0; 
+ else
+  Q <= D;
+end
+endmodule
+
+![Screenshot 2024-04-14 224843](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/d8dbb4dc-5a57-479c-bfb2-d6d2e3898678)
+
+![Screenshot 2024-04-14 224939](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/1c809b94-0619-42ff-8b53-3000761d91a5)
+
+
 
 OUTPUT WAVEFORM
  <<< PASTE YOUR OUTPUT WAVEFORM >>>
