@@ -69,6 +69,30 @@ endmodule
 
 ![Screenshot 2024-04-14 224939](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/1c809b94-0619-42ff-8b53-3000761d91a5)
 
+module JK_flipflop (q,q_bar,j,k,clk,reset);
+ input j,k,clk, reset;
+ output reg q;
+ output q_bar;
+ always@(posedge clk) begin 
+  if(!reset)
+   q <= 0;
+  else
+ begin
+   case({j,k})
+    2'b00: q<= q; 
+    2'b01: q<= 1'b0; 
+    2'b10: q <= 1'b1;
+    2'b11: q <= ~q; 
+   endcase
+   end
+  end
+  assign q_bar = ~q;
+endmodule
+
+![Screenshot 2024-04-15 010036](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/a9c16640-0296-4e99-8e5f-57ba60a40302)
+
+![Screenshot 2024-04-15 010129](https://github.com/Christina1106/VLSI-LAB-EXP-4/assets/161043650/23d7c687-e50d-43ed-a05d-d0fe4f5f7a8c)
+
 
 
 OUTPUT WAVEFORM
