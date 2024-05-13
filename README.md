@@ -1,13 +1,29 @@
-# VLSI-LAB-EXP-4
+
 SIMULATION AND IMPLEMENTATION OF SEQUENTIAL LOGIC CIRCUITS
 
-AIM: 
- To simulate and synthesis SR, JK, T, D - FLIPFLOP, COUNTER DESIGN using Xilinx ISE.
+AIM : To simulate and synthesis SR, JK, T, D - FLIPFLOP, COUNTER DESIGN using Vivado 2023.2.
 
-APPARATUS REQUIRED:
+APPARATUS REQUIRED : Vivado™ ML 2023.2
 
-Xilinx 14.7
-Spartan6 FPGA
+PROCEDURE:
+
+1.Open Vivado: Launch Xilinx Vivado software on your computer.
+
+2.Create a New Project: Click on "Create Project" from the welcome page or navigate through "File" > "Project" > "New".
+
+3.Project Settings: Follow the prompts to set up your project. Specify the project name, location, and select RTL project type.
+
+4.Add Design Files: Add your Verilog design files to the project. You can do this by right-clicking on "Design Sources" in the Sources window, then selecting "Add Sources". Choose your Verilog files from the file browser.
+
+5.Specify Simulation Settings: Go to "Simulation" > "Simulation Settings". Choose your simulation language (Verilog in this case) and simulation tool (Vivado Simulator).
+
+6.Run Simulation: Go to "Flow" > "Run Simulation" > "Run Behavioral Simulation". This will launch the Vivado Simulator and compile your design for simulation.
+
+7.Set Simulation Time: In the Vivado Simulator window, set the simulation time if it's not set automatically. This determines how long the simulation will run.
+
+8.Run Simulation: Start the simulation by clicking on the "Run" button in the simulation window.
+
+9.View Results: After the simulation completes, you can view waveforms, debug signals, and analyze the behavior of your design.
 
 **LOGIC DIAGRAM**
 
@@ -35,102 +51,14 @@ COUNTER
 ![image](https://github.com/navaneethans/VLSI-LAB-EXP-4/assets/6987778/a1fc5f68-aafb-49a1-93d2-779529f525fa)
 
 
-  
-PROCEDURE:
-STEP:1  Start  the Xilinx navigator, Select and Name the New project.
-STEP:2  Select the device family, device, package and speed.       
-STEP:3  Select new source in the New Project and select Verilog Module as the Source type.                       
-STEP:4  Type the File Name and Click Next and then finish button. Type the code and save it.
-STEP:5  Select the Behavioral Simulation in the Source Window and click the check syntax.                       
-STEP:6  Click the simulation to simulate the program and  give the inputs and verify the outputs as per the truth table.               
-STEP:7  Select the Implementation in the Sources Window and select the required file in the Processes Window.
-STEP:8  Select Check Syntax from the Synthesize  XST Process. Double Click in the  FloorplanArea/IO/Logic-Post Synthesis process in the User Constraints process group. UCF(User constraint File) is obtained. 
-STEP:9  In the Design Object List Window, enter the pin location for each pin in the Loc column Select save from the File menu.
-STEP:10 Double click on the Implement Design and double click on the Generate Programming File to create a bitstream of the design.(.v) file is converted into .bit file here.
-STEP:11  On the board, by giving required input, the LEDs starts to glow light, indicating the output.
 
-## SR FLIPFLOP
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/1b2177a8-188e-4f48-b15a-d7c9b8593b3b)
-### Verilog Code:
-```
-module srff(s,r,clk,rst,q);
-input s,r,clk,rst;
-output reg q;
-always@(posedge clk)
-begin
-if(rst==1)
-q=0;
-else
-begin
-case({s,r})
-2'b00:q=q;
-2'b01:q=0;
-2'b10:q=1;
-2'b11:q=1'bX;
-endcase
-end
-end
-endmodule
-```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/fde5adbc-d127-43c7-9c3a-c97e33c69621)
+EXPERIMENTS :
 
-## JK FLIPFLOP
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/fe2a5529-43ac-4082-8cac-c76d3b0e7b7c)
-### Verilog Code:
-```
-module jkff(j,k,clk,rst,q);
-input j,k,clk,rst;
-output reg q;
-always@(posedge clk)
-begin
-if(rst==1)
-q=0;
-else
-begin
-case({j,k})
-2'b00:q=q;
-2'b01:q=0;
-2'b10:q=1;
-2'b11:q=~q;
-endcase
-end
-end
-endmodule
-```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/b12acba8-0471-448a-8dc6-4bc19cde4bc3)
+#1
 
-## T FLIPFLOP
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/697518d6-da49-48c9-85b5-91688460a237)
+D FLIP FLOP :-
 
-### Verilog Code:
-```
-module tff(clk,rst,t,q);
-input clk,rst,t;
-output reg q;
-always @(posedge clk)
-begin
-if (rst==1)
-q=1'b0;
-else if (t==0)
-q=q;
-else
-q=~q;
-end
-endmodule
-```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/1d84bc96-d7b9-44bf-9f1b-b1793188a121)
-
-## D FLIPFLOP
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/d09dddf0-3f9f-4e6d-9f69-3787c39000d2)
-
-### Verilog Code:
+Code:
 ```
 module dff(d,clk,rst,q);
 input d,clk,rst;
@@ -144,19 +72,199 @@ q=d;
 end
 endmodule
 ```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/0daf167d-d841-4311-8c4a-278de39d27c4)
 
-## COUNTER
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/15be6215-2b4d-48e6-8f2e-d6932e27e3b0)
-## Updown Counter:
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/19856d87-24ca-4363-84aa-12799c6fecc6)
+OUTPUT:-
 
-### Verilog Code:
+Simulation :
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/ebd254db-2710-495e-b434-d138d4fc5787)
+
+Elaborated Design :
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/5a6738c0-4c7d-4c6b-8dbb-bf922240b524)
+
+
+#2
+
+JK FLIP FLOP:-
+
+Code:
 ```
-module udc(clk,rst,updown,out);
+module JK_flipflop (q, q_bar, j,k, clk, reset);
+  input j,k,clk, reset;
+  output reg q;
+  output q_bar;
+  always@(posedge clk) begin
+    if(!reset)        q <= 0;
+    else 
+  begin
+      case({j,k})
+        2'b00: q <= q;  
+        2'b01: q <= 1'b0; 
+        2'b10: q <= 1'b1;
+        2'b11: q <= ~q; 
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
+OUTPUUT:-
+
+Simulation Output:
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/c2854e6e-e908-4084-a99b-fe13efc3e33f)
+
+Elaborated Design:
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/36ce69ce-bbea-45e4-a238-63f6bd14c563)
+
+#3
+MOD 10 COUNTER :-
+
+Code :
+```
+module counter(
+input clk,rst,enable,
+output reg [3:0]counter_output
+);
+always@ (posedge clk)
+begin 
+if( rst | counter_output==4'b1001)
+counter_output <= 4'b0000;
+else if(enable)
+counter_output <= counter_output + 1;
+else
+counter_output <= 0;
+end
+endmodule
+```
+OUTPUT:-
+
+Simulation :
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/6ce15159-f37e-4e49-bd4c-6dbeea845958)
+
+Elaborated Design :
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/a855b92a-9460-40d1-8b25-43bdc5996e26)
+
+#4
+
+Ripple Counter:-
+
+Code :
+```
+module D_FF(q, d, clk, reset);
+output q;
+input d, clk, reset;
+reg q;
+always @(posedge reset or negedge clk)
+if (reset)
+q = 1'b0;
+else
+q = d;
+endmodule
+module T_FF(q, clk, reset);
+output q;
+input clk, reset;
+wire d;
+D_FF dff0(q, d, clk, reset);
+not n1(d, q); 
+endmodule
+module ripple_carry_counter(q, clk, reset);
+output [3:0] q;
+input clk, reset;
+T_FF tffo(q[0], clk, reset);
+T_FF tff1(q[1], q[0], reset);
+T_FF tff2(q[2], q[1], reset);
+T_FF tff3(q[3], q[2], reset);
+endmodule
+```
+
+OUTPUT:-
+
+Simulation:
+
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/5d5ac093-806e-40f0-a26d-8fbc853d44b4)
+
+Elaborated Design :
+
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/2da80146-b544-476d-a316-2f9a419e1b58)
+
+#5
+
+SR FLIPFLOP :-
+
+Code :
+
+```
+module SR_flipflop (q, q_bar, s,r, clk, reset);
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+  always@(posedge clk) begin 
+    if(!reset)�        q <= 0;
+    else 
+  begin
+      case({s,r})
+        2'b00: q <= q;    
+        2'b01: q <= 1'b0; 
+        2'b10: q <= 1'b1; 
+        2'b11: q <= 1'bx; 
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
+OUTPUT:-
+
+Simulation :
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/85a009e3-d195-4b87-884e-4b299f106f4a)
+
+Elaborated Design :
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/07ea67e6-b2e4-4418-9b19-ceda0e1815ee)
+
+#6
+
+T FLIP FLOP :-
+
+Code :
+```
+module tff (t,clk, rstn,q);  
+ input t,clk, rstn;
+ output reg q;
+  always @ (posedge clk) begin  
+    if (!rstn)  
+      q <= 0;  
+    else  
+        if (t)  
+            q <= ~q;  
+        else  
+            q <= q;  
+  end  
+endmodule
+```
+OUTPUT:-
+
+Simulation :
+
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/794aebcd-e545-4a29-9578-fc25f5fcb299)
+
+Elaborated Design :
+
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/3a1c6a5b-8e1d-45d2-a864-d9623eacd63a)
+
+#7
+
+UP DOWN COUNTER :-
+
+Code:
+
+```
+module updown_counter(clk,rst,updown,out);
 input clk,rst,updown;
 output reg [3:0]out;
 always@(posedge clk)
@@ -170,70 +278,18 @@ out=out-1;
 end
 endmodule
 ```
-### Output:
-  ![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/fd74457f-1f35-4e94-a628-5efff9ba956f)
+OUTPUT:-
 
-## Mod-10 Counter:
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/637add02-e848-4f74-a8b8-9e183a68df4b)
-### Verilog Code:
-```
-module mod10(clk,rst,out);
-input clk,rst;
-output reg [3:0]out;
-always@(posedge clk)
-begin
-if (rst==1 | out==4'b1001)
-out=4'b0000;
-else
-out=out+1;
-end
-endmodule
-```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/20fb126a-6ff9-48a3-876f-64c9b710f28c)
+Simulation:-
 
-## Ripple Carry Counter:
-### Logic Diagram:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/c8966ae1-c506-4bfc-a6e3-028ea15d87a2)
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/9c73c3f7-1d5a-4bde-ac4c-ba4a4cc25347)
+Elaborated Design:-
 
-### Verilog Code:
-```
-module tff(q,clk,rst);
-input clk,rst;
-output q;
-wire d;
-dff df1(q,d,clk,rst);
-not n1(d,q);
-endmodule
+![image](https://github.com/Nagarajan2003/VLSI-LAB-EXP-4/assets/164840481/a198d78b-5e09-4173-a4ee-d1503f36039f)
 
-module dff(q,d,clk,rst);
-input d,clk,rst;
-output q;
-reg q;
-always @(posedge clk or posedge rst)
-begin
-if (rst)
-q=1'b0;
-else 
-q=d;
-end
-endmodule
 
-module rcc(clk,rst,q);
-input clk,rst;
-output [3:0]q;
-tff tf1(q[0],clk,rst);
-tff tf2(q[1],q[0],rst);
-tff tf3(q[2],q[1],rst);
-tff tf4(q[3],q[2],rst);
-endmodule
-```
-### Output:
-![image](https://github.com/Nandhak23/VLSI-LAB-EXP-4-/assets/160568515/9738870c-f3e1-40a5-87be-5a6cb680ca91)
+RESULT :
 
-## RESULT:
-Hence SR, JK, T, D - FLIPFLOP, COUNTER DESIGN are simulated and synthesised using Xilinx ISE.
-
+Simulate And Synthesis SR, JK, T, D - FLIPFLOP, COUNTER DESIGN is Successfully Verified using Vivado Software.
 
 
